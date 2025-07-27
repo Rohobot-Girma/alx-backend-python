@@ -29,6 +29,8 @@ ALLOWED_HOSTS = []
 
 # Application definition
 
+AUTH_USER_MODEL = 'chats.User'
+
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
@@ -44,6 +46,9 @@ INSTALLED_APPS = [
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+    'chats.middleware.RequestLoggingMiddleware',  # Custom middleware for logging requests
+    'chats.middleware.RestrictAccessByTimeMiddleware',  # Custom middleware for time-based access restriction
+    'chats.middleware.OffensiveLanguageMiddleware',  # Custom middleware for offensive language filtering
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
